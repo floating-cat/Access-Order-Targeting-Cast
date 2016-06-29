@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Access Order Targeting Cast☆</string>
+
+    <string name="targeting">Targeting</string>
+    <string name="settings">Settings</string>
+    <string name="source_file">Source file</string>
+    <string name="output_directory">Output directory</string>
+
+    <string name="prompt_unable_to_find_source_file">Unable to find the source file</string>
+    <string name="prompt_unable_to_find_output_directory">Unable to find the output directory</string>
+</resources>

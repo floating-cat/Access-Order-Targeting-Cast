@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cl.monsoon.access_order_targeting_cast">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        // do not set permission for this receiver because We can not require
+        // any permissions when using XposedBridge
+        <receiver android:name=".main.SetTargetingPreferenceFalseReceiver">
+            <intent-filter>
+                <action android:name="${SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION}" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

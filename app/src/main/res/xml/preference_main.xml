@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:persistent="false">
+
+    <SwitchPreference
+        android:key="pref_key_targeting"
+        android:persistent="true"
+        android:title="@string/targeting" />
+
+    <PreferenceCategory
+        android:persistent="false"
+        android:title="@string/settings">
+
+        <Preference
+            android:key="pref_key_source_file"
+            android:persistent="true"
+            android:title="@string/source_file" />
+
+        <Preference
+            android:key="pref_key_output_directory"
+            android:persistent="true"
+            android:title="@string/output_directory" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

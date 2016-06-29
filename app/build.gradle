@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+apply plugin: 'com.github.ben-manes.versions'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25"
+
+    defaultConfig {
+        applicationId "cl.monsoon.access_order_targeting_cast"
+        minSdkVersion 23
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 'cl.monsoon.access_order_targeting_cast.AndroidJUnitRunnerForDI'
+
+        def SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION =
+                "cl.monsoon.access_order_targeting_cast.intent.action.SET_TARGETING_PREFERENCE_FALSE"
+        manifestPlaceholders = [SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION:
+                                        SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION]
+        buildConfigField "String",
+                "SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION",
+                '\"' + SET_TARGETING_PREFERENCE_FALSE_RECEIVER_ACTION + '\"'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        development {
+
+        }
+        production {
+
+        }
+    }
+}
+
+def supportVersion = '25.0.0'
+def daggerVersion = '2.7'
+
+dependencies {
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    provided 'de.robv.android.xposed:api:82'
+    compile "com.android.support:design:$supportVersion",
+            "com.google.dagger:dagger:$daggerVersion",
+            'com.google.guava:guava:19.0',
+            'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
+
+    testCompile 'junit:junit:4.12',
+            'org.mockito:mockito-core:2.2.7',
+            'com.google.truth:truth:0.29'
+
+    androidTestApt "com.google.dagger:dagger-compiler:$daggerVersion"
+    androidTestCompile 'com.google.truth:truth:0.30',
+            'com.android.support.test:runner:0.5',
+            'com.android.support.test.espresso:espresso-intents:2.2.2',
+            'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+}
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-annotations:$supportVersion"
+}
